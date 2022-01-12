@@ -1,0 +1,118 @@
+<!-- Tepi-->
+<script>
+    function getlogo() {
+		$.ajax({
+			async: true,
+			global: false,
+			url: '/sYE8kSrGbwM=/api/getlogo',
+			success: function (data) {
+                // console.log(data);
+                if (data.length>0) {
+                    // console.log(data[0].logoround);
+                    document.getElementById('logobig').src = data[0].logoweb;
+                    document.getElementById('logosmall').src = data[0].logoround;
+                    var titleori = document.title;
+                    var subtit = '';
+                    try {
+                        t1 = titleori.split('-');
+                        subtit = t1[1]
+                        // console.log('t1: '+subtit);
+                    } catch (error) {}
+                    document.title = data[0].title+' -'+subtit;
+                }
+			}
+		});
+	}
+    getlogo(); // TO USE EVERY HTML WITHOUT PASSING IN BACKEND
+</script>
+
+<head>
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+<style type="text/css">
+    .nav-link > span {
+        padding-left: 5px !important;
+    }
+    @media only screen and (max-width: 1024px) {
+        #logobig {
+            display: none;
+        }
+    }
+    @media only screen and (min-width: 1025px) {
+        #logosmall {
+            display: none;
+        }
+    }
+</style>
+
+</head>
+
+<ul class="navbar-nav d-blue sidebar sidebar-dark accordion" id="accordionSidebar" style="transition: .4s">
+    <!-- Sidebar - Brand -->
+    {% load static %}
+    <a class="sidebar-brand d-flex align-items-center justify-content-center yellow-border" id="sbrand" href="/home">
+        <div class="sidebar-brand-icon">
+            <!-- <img  width="180" height="30" id="logobig">
+            <img  width="40" height="40" id="logosmall"> -->
+             <img src="{% static 'img/icon/nema_white.png' %}" width="60" height="60">
+            <span style="font-size: 30px;">NEMA</span>
+            <!-- <img src="{% static 'img/street-light.png' %}" style="transform: scaleX(-1);" width="30" height="40"> -->
+        </div>
+        <!-- <div class="sidebar-brand-text mx-2"><sup></sup>Lightsol</div> -->
+    </a>
+
+    <!-- Divider -->
+    <!-- <hr class="sidebar-divider my-0"> -->
+    <li class="nav-item" style="background-color: #2A4599;font-size: 10.4px;font-weight: 800" id="navigation"><span class="nav-link">NAVIGATION</span></li>
+    <li class="nav-item" id="home">
+        <a class="nav-link" href="/home">
+            <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
+            <img src="{% static 'img/icon/home2.png' %}" width="20" height="20">
+            <span>Home</span></a>
+    </li>
+
+    <!-- Divider -->
+    <li class="nav-item" style="background-color: #2A4599;font-size: 10.4px;font-weight: 800" id="settings"><span class="nav-link">SETTINGS</span></li>
+
+    <li class="nav-item" id="user">
+        <a class="nav-link" href="/indexnema">
+            <!-- <i class="fas fa-users fa-fw"></i> -->
+            <img src="{% static 'img/icon/nema.png' %}" width="20" height="20">
+            <span>Nema</span></a>
+    </li>
+
+    <li class="nav-item" id="user">
+        <a class="nav-link" href="/return_nema">
+            <!-- <i class="fas fa-users fa-fw"></i> -->
+            <img src="{% static 'img/icon/form.png' %}" width="20" height="20">
+            <span>Return Form</span></a>
+    </li>
+
+   
+    <!-- <li class="nav-item active">
+        <a class="nav-link" href="/indexnematry">Index Nema</a>
+    </li>  
+    <li class="nav-item" id="user">
+        <a class="nav-link" href="/indexexcelnema">
+            <img src="{% static 'img/icon/form.png' %}" width="20" height="20">
+            <span>TRY- Excel Data</span></a>
+    </li> -->
+     
+    <!-- Sidebar Toggler (Sidebar)  -->
+    <!-- <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div> -->
+
+</ul>
+
+<script>
+    var logo = document.getElementById('logobig').src
+    if(logo == ''){
+        document.getElementById('logo_dummy').style.display = 'unset'
+        document.getElementById('logobig').style.display = 'none'
+    } else {
+        document.getElementById('logo_dummy').style.display = 'none'
+        document.getElementById('logobig').style.display = 'unset'
+    }
+</script>

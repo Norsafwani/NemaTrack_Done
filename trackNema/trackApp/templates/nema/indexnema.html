@@ -1,0 +1,98 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<!--OSM-->
+{% load static %}
+<!--Map-->
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {% include 'layout/navbar.html' %}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content">
+
+            <!-- Topbar -->
+            {% include 'layout/topbar.html' %}
+            <!-- End of Topbar -->
+            <!-- Begin Page Content -->
+            <div class="container-fluid h-100 pt-4 darker-nw">
+                <!-- Content Row -->
+                <div class="card-body d-blue rounded card-cus">
+                    <h4 class="pb-4 text-white">
+                        Nema Return Form List 
+                        <span style="cursor: pointer; float: right; font-size: 1.5em;">
+                          
+                          <a title="Create Gateway" href="/createorganization" class="btn" id="corg"
+                            style="border-color: white;color: white;cursor: pointer;"><i class="fas fa-plus"></i>&nbsp CREATE</a>
+                            <!-- <a href="/sYE8kSrGbwM=/addGroup" title="Create group"> <i class="fas fa-plus-square"></i></a> -->
+                          
+                        </span>
+                    </h4>
+                   
+                        <div class="table-responsive">
+                        <table class="table text-white" id="datatb" style="border-top:transparent solid;">
+                            <tbody>
+                            <tr>
+                                <!--<td>#</td>-->
+                                <td>Id</td>
+                                <td>Date Uninstall</td>
+                                <td>Date Detect Problem</td>
+                                <td>Prolem Description</td>
+                                <td>No. Siri</td>
+                                <td>Document</td>
+                                <td>Nema</td>
+                        
+                            </tr>
+                        
+                            {% for re in nematry %}
+                        
+                            <tr>
+                            
+                                <td> {{ re.id    }}</td> 
+                                <td> <a class="nav-link" href="/viewnema/{{ re.id }}">{{ ne.dateuninstall }}</a></td>
+                                <td> {{ re.datedetect }} </td>
+                                <td> {{ re.prof_describe }} </td>
+                                <td> {{ re.no_siri }} </td>
+                                <td> {{ re.documents }} </td>
+                                <td> {{ re.nema }} </td>
+                        
+                                <!-- <td> 
+                                    <a href="/deletenema/{{ ne.id }}">
+                                        <button type="button" class="btn btn-primary">DELETE</button> 
+                                    </a> <br><br>
+                                    
+                        
+                                </td> -->
+                            </tr>
+                            {% endfor %}
+                        
+                            </tbody>
+                        </table>
+                        </div>
+                    
+                    
+                </div>
+
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+        </div>
+
+        <!-- Footer -->
+        {% include 'layout/footer.html' %}
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+
+{% endblock %}

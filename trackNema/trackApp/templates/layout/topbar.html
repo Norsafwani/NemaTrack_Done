@@ -1,0 +1,73 @@
+<!-- Topbar -->
+<style type="text/css">
+    .big{
+        transform: scale(0.9) !important;
+        right:-.15rem !important;
+        margin-top:-0.7rem !important; 
+    }
+    #sidebar72:hover {
+        background: #f80808;
+    }
+    #src_id {
+        outline: none;
+        padding-left: 10px;
+        display: none;
+    }
+</style>
+
+<nav class="navbar navbar-expand yellowish navbar-light topbar static-top" style="z-index: 1001;">
+    <!-- Sidebar Toggle (Topbar) -->
+    <!-- <button onclick="smallclose()" id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3 text-gray-700">
+        <i class="fa fa-bars"></i>
+    </button>
+    <button class="btn btn-link rounded-circle mr-3 text-gray-700" onclick="closenav()" id="sidebar72">
+        <i class="fa fa-bars"></i>
+    </button> -->
+    {% load static %}
+
+    {% if filename %}
+        <img src="{{filename}}" width="45" height="45">
+    {% endif %}
+
+    {% if header %}
+        <h4 class="ml-3 pt-2" style="color: #293248;font-weight: 800;">{{header}}</h4>
+    {% endif %}
+
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-900 big">Hi {{ it.username }}</span>
+                <img src="{% static 'img/icon/user3.png' %}" width="30px" height="30px">
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+                <a class="dropdown-item" href="/profileuser">
+                    <i class="fas fa-grip-horizontal fa-sm fa-fw mr-2 text-gray-400"></i>
+                    User Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="logout_nema">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<style>
+    /* For mobile phones: */
+    @media only screen and (max-width: 767px) {
+        #sidebar72, #sbrand,#linav,#group,#dim,#location,#datatable,#user,#feeder,#device,#events,#gateway,#settings,#home,#linav2,#navigation,#modbusconfig,#monitor,#report,#energy,#license,#alarm,#organizationconfig{
+            display:none;
+        }
+        #accordionSidebar{
+            width: 0 ;
+        }
+    }
+</style>

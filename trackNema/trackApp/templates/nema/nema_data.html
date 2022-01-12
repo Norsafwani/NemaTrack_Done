@@ -1,0 +1,143 @@
+{% extends 'index.html' %}
+<!--Title webpage-->
+{% block title %} View Nema {% endblock %}
+
+
+{% block content %}
+<!--OSM-->
+{% load static %}
+<!--Map-->
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {% include 'layout/navbar.html' %}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content">
+
+            <!-- Topbar -->
+            {% include 'layout/topbar.html' %}
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid h-100 pt-4 darker-nw">
+                <!-- Content Row -->
+                <div class="card-body d-blue rounded card-cus">
+                    <h2 class="pb-4 text-white">
+                        Nema List <br><br>
+                        <a title="Create New Nema" href="/nemacreate" class="btn" id="corg"
+                            style="border-color: white;color: white;cursor: pointer;"><i class="fas fa-plus"></i>&nbsp New Nema Form</a>
+                        <a title="Create New Nema" href="/nemaexcel" class="btn" id="corg"
+                            style="border-color: white;color: white;cursor: pointer;"><i class="fas fa-plus"></i>&nbsp Nema By Excel</a>
+                        <span style="cursor: pointer; float: right; font-size: 1.5em;">
+                            <form class="form-inline my-2 my-lg-0" action="/searchnema" method="post">
+                                {% csrf_token %}
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search Any Keyword " aria-label="Search" name="searchNema">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                            
+                        </span>
+                    </h2>
+
+                        <div class="table-responsive">
+                        <table class="table text-white" id="datatb" style="border-top:transparent solid;">
+    <tbody>
+    <tr>
+        <!--<td>#</td>-->
+        <td>Nema Id</td>
+        <td>DEVUI</td>
+        <td>APPLICATION KEY</td>
+        <td>SHIPMENT DATE RECEIVED</td>
+        <td>SITE INSTALLATION DATE</td>
+        <td>DATE DELIVER</td>
+        <td>LIGHTSOL NAME</td>
+        <td>LICENSE ACTIVATION DATE</td>
+        <td>LICENSE EXPIRED DATE</td>
+        <td>CONTRACTOR NAME </td>
+        <td>END CLIENT NAME </td>
+        <td>PROJECT/TENDER NAME </td>
+        <td>DO.NUMBER</td>
+        <td>REMARKS</td>
+        <td>UPDATE</td>
+        <td>DELETE</td>
+        <td> </td>
+
+    </tr>
+
+    {% for ne in nema %}
+
+    <tr>
+        <!--  <td>{{ forloop.counter }}</td>-->
+        <!-- <td>{{ it.org_department }}</td> -->
+        <td> {{ ne.nema_id    }}</td> 
+        <td> <a class="nav-link" href="/viewnema/{{ ne.nema_id }}">{{ ne.devui }}</a></td>
+        <td> {{ ne.app_key }} </td>
+        <td> {{ ne.ship_date_received|date:'d/m/Y' }} </td>
+        <td> {{ ne.site_install_date|date:'d/m/Y' }} </td>
+        <td> {{ ne.date_deliver|date:'d/m/Y'}} </td>
+        <td> {{ ne.lightsol_name  }}  </td>
+        <td> {{ ne.license_active_date|date:'d/m/Y' }} </td>
+        <td> {{ ne.license_expired_date|date:'d/m/Y' }} </td>
+        <td> {{ ne.contractor_name }} </td>
+        <td> {{ ne.end_client_name }} </td>
+        <td> {{ ne.project_tender_name }} </td>
+        <td> {{ ne.do_number|date:'d/m/Y' }} </td>
+        <td> {{ ne.remarks }} </td>
+        <!-- <td>{{ it.id.id}}</td> -->
+        <!-- <td> 
+            <a href="/deletenema/{{ ne.nema_id }}">
+                <button type="button" class="btn btn-primary">DELETE</button> 
+            </a>
+        </td> -->
+        <td>
+            <a title="Update" href="/updatenema/{{ ne.nema_id }}" class="btn-text-secondary px-0">
+                <i class="far fa-edit fa-lg"></i>
+            </a>
+        </td>
+        <td>
+            <a title="Delete" href="/deletenema/{{ ne.nema_id }}" class="btn-text-secondary px-0">
+                <i class="fas fa-trash-alt"></i>
+            </a>
+        </td>
+
+        <!-- <td>
+
+            <a href="/updatenema/{{ ne.nema_id }}">
+              <button type="button" class="btn btn-secondary">UPDATE</button>
+              <i class="far fa-edit fa-lg"></i>
+            </a> <br><br>
+
+        </td> -->
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+                        
+                        </div>
+                    
+                    
+                </div>
+
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+        </div>
+
+        <!-- Footer -->
+        {% include 'layout/footer.html' %}
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'index.html' %}
+<!--Title webpage-->
+{% block title %} View Nema {% endblock %}
+
+
+{% block content %}
+<!--OSM-->
+{% load static %}
+<!--Map-->
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {% include 'layout/navbar.html' %}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column ">
+
+        <div id="content">
+
+            <!-- Topbar -->
+            {% include 'layout/topbar.html' %}
+            <!-- End of Topbar -->
+            
+            <!-- Begin Page Content -->
+           
+            <div class="container-fluid h-100 pt-3 darker-nw"> 
+            <h2>
+              Add New Nema Form
+            </h2>
+              <!-- Content Row -->
+            
+                <form action="/submitnema" method="post" > 
+                  {% csrf_token %}
+                
+                  <label for="team_name">DEVUI: </label>
+                  <input id="devui"  class="form-control" type="text" name="devui" value=""><br>
+                
+                  <label for="team_name">APPLICATION KEY: </label>
+                  <input id="app_key" class="form-control"  type="text" name="app_key" value=""><br>
+                
+                  <label for="team_name">SHIPMENT DATE RECEIVED: </label>
+                  <input id="ship_date_received" type="date" class="form-control" name="ship_date_received" value=""><br> 
+                  <!-- <input type ="date" id = "datepicker-3" name="ship_date_received" value="" > -->
+                
+                  <label for="team_name">SITE INSTALLATION DATE: </label>
+                  <input id="site_install_date" type="date" class="form-control" name="site_install_date" value=""><br>
+                  <!-- <input type = "date-local" id = "datepicker-2" name="site_install_date" value="" > -->
+                
+                  <label for="team_name">DATE DELIVER: </label>
+                  <input id="date_deliver" type="date" class="form-control" name="date_deliver" value=""><br>
+                  <!-- <input type = "date-local" id = "datepicker-3" name="date_deliver" value="" > -->
+                
+                  <label for="team_name">LIGHTSOL NAME: </label>
+                  <input id="lightsol_name" type="text" class="form-control"  name="lightsol_name" value=""><br>
+                
+                  <label for="team_name">LICENSE ACTIVATION DATE: </label>
+                  <input id="license_active_date"  type="date"  class="form-control" name="license_active_date" value=""><br>
+                  <!-- <input type = "date-local" id = "datepicker-3" name="license_active_date" value="" > -->
+                
+                  <label for="team_name">LICENSE EXPIRED DATE: </label>
+                  <input id="license_expired_date" type="date" class="form-control" name="license_expired_date" value=""><br>
+                  <!-- <input type = "date-local" id = "datepicker-3" name="license_expired_date" value="" > -->
+                
+                  <label for="team_name">CONTRACTOR NAME: </label>
+                  <input id="contractor_name"  type="text" class="form-control" name="contractor_name" value=""><br>
+                
+                  <label for="team_name">END CLIENT NAME: </label>
+                  <input id="end_client_name" type="text" class="form-control" name="end_client_name" value=""><br>
+                
+                  <label for="team_name">PROJECT/TENDER NAME: </label>
+                  <input id="project_tender_name" type="text" class="form-control" name="project_tender_name" value=""><br>
+                
+                  <label for="team_name">DO.NUMBER: </label>
+                  <input id="do_number" type="date" class="form-control" name="do_number" value="" ><br>
+                  <!-- <input type = "date-local" id = "datepicker-3" name="do_number" value="" > -->
+                
+                  <label for="team_name">REMARKS: </label>
+                  <input id="remarks"  type="text" class="form-control" name="remarks" value=""><br>
+                
+                  <input type="submit" value="ADD" id="submit">
+              
+                </form>
+            
+            <!-- End of Main Content -->
+        </div>
+
+        <!-- Footer -->
+        {% include 'layout/footer.html' %}
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+
+{% endblock %}

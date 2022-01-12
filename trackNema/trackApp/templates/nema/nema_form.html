@@ -1,0 +1,113 @@
+{% extends 'index.html' %}
+<!--Title webpage-->
+{% block title %} Add Return Form {% endblock %}
+
+
+{% block content %}
+<!--OSM-->
+{% load static %}
+<!--Map-->
+
+<style>
+  input[type=submit] {
+    background-color: #2333be;
+    color: #fff;
+    padding: 5px 20px;
+    text-decoration: none;
+    margin: 4px 3px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+</style>
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {% include 'layout/navbar.html' %}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column ">
+
+        <div id="content">
+
+            <!-- Topbar -->
+            {% include 'layout/topbar.html' %}
+            <!-- End of Topbar -->
+            
+            <!-- Begin Page Content -->
+           
+            <div class="container-fluid h-100 pt-3 darker-nw"> 
+           
+            <h4 class="pb-4 text-white">
+              Nema Return Form for DEVUI: {{ objNema.devui }}
+            </h4>
+              <!-- Content Row -->
+            
+              <form method="post" enctype="multipart/form-data" action="/save_file_second">
+                {% csrf_token %}
+                
+                  <label for="team_name">Nema ID: </label>
+                  <input type="text" id="nema_id" name="nema_id" value="{{objNema.nema_id}}"><br>
+                
+                  <label for="team_name">Uninstall Date:</label>
+                  <input type="date" id="dateuninstall" name="dateuninstall" class="form-control" value=""><br> 
+                  <!-- <input type ="date" id = "datepicker-3" name="ship_date_received" value="" > -->
+                
+                  <label for="team_name">Date Detect Problem: </label>
+                  <input type="date" id="datedetect" name="datedetect" class="form-control" value=""><br>
+                  <!-- <input type = "date-local" id = "datepicker-2" name="site_install_date" value="" > -->
+                
+                  <label for="team_name">Problem Description: </label>
+                  <textarea id="proof_describe" name="proof_describe" placeholder="Problem Description" style="height:100px" class="form-control" value=""></textarea><br>
+                
+                  <label for="team_name">Siri Number:</label>: </label>
+                  <input type="text" id="no_siri" name="no_siri" placeholder="Nema Number Siri" class="form-control" value="">
+                
+                  <label for="team_name">Picture Proof: </label>
+                  <div>
+                    <input name="filename" value="Image" hidden></input>
+                    <input class="form-control" name="name_file" required placeholder="File Name"></input><br> 
+                   <input class="imagereport" type="file" accept="image/*" name="sl_report_img"
+                     id="imgInpSl">
+                   <img id="blahSl" src="#" alt="your image name" width="400" height="400" /> 
+                  </div><br>
+                
+                  <input type="submit" value="Submit" id="submit">
+              
+                </form>
+            
+            <!-- End of Main Content -->
+        </div>
+
+        <!-- Footer -->
+        {% include 'layout/footer.html' %}
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<script>
+  //Function for save_file
+  function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('#blahSl').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
+$("#imgInpSl").change(function () {
+  readURL(this);
+});
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'index.html' %}
+{% block title %} View Nema {% endblock %}
+
+{% block content %}
+<!--OSM-->
+{% load static %}
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <div id="content">
+
+      <!-- Begin Page Content -->
+
+      <div class="container-fluid h-100 pt-4 darker-nw">
+        <!-- Content Row -->
+        <div class="card-body d-blue rounded card-cus">
+          <h4 class="pb-4 text-white">
+            Nema Information for DEVUI: {{ objnema.devui }}
+            <span style="cursor: pointer; float: right; font-size: 1.5em;">
+              <a title="UPDATE Nema" id="updatenema" href="/updatenema/{{ objnema.nema_id }}" class="btn"
+                style="border-color: white;color: rgb(255, 255, 255);cursor: pointer;"><i class="fas fa-plus"></i>&nbsp UPDATE </a>
+            </span>
+          </h4>
+          
+
+          <form class="form-vertical" method="POST" action="/viewnema" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <table class="table text-white" id="datatb" style="border:transparent solid;">
+              <tbody>
+
+                <tr>
+                  <th>DEVUI:</th>
+                  <td> {{ objnema.devui }} </td>
+                </tr>
+                <tr>
+                  <th>Application Key:</th>
+                  <td>  {{ objnema.app_key }} </td>
+                </tr>
+                <tr>
+                  <th>Shipment Date Received:</th>
+                  <td> {{ objnema.ship_date_received|date:'d/m/Y' }} </td>
+                </tr>
+                <tr>
+                  <th>Site Installation Date</th>
+                  <td>  {{ objnema.site_install_date|date:'d/m/Y'  }} </td>
+                </tr>
+                <tr>
+                  <th>Date Deliver:</th>
+                  <td>  {{ objnema.date_deliver|date:'d/m/Y'  }} </td>
+                </tr>
+                <tr>
+                  <th> Lightsol Name: </th>
+                  <td>  {{ objnema.lightsol_name }} </td>
+                </tr>
+                <tr>
+                  <th>License Activation Date :</th>
+                  <td> {{ objnema.license_active_date|date:'d/m/Y' }} </td>
+                </tr>
+                <tr>
+                  <th>License Expired Date:</th>
+                  <td>  {{ objnema.license_expired_date|date:'d/m/Y'  }} </td>
+                </tr>
+                <tr>
+                  <th>Contractor Name:</th>
+                  <td> {{ objnema.contractor_name }} </td>
+                </tr>
+                <tr>
+                  <th>End Client Name:</th>
+                  <td>  {{ objnema.end_client_name }} </td>
+                </tr>
+                <tr>
+                  <th>Project/ Tender Name:</th>
+                  <td>  {{ objnema.project_tender_name }} </td>
+                </tr>
+                <tr>
+                  <th> Do. Number: </th>
+                  <td>  {{ objnema.do_number|date:'d/m/Y' }} </td>
+                </tr>
+                <tr>
+                  <th> Remarks: </th>
+                  <td>  {{ objnema.remarks }} </td>
+                </tr>
+
+                 
+              </tbody>
+            </table>
+
+          </form>
+
+          <span style="cursor: pointer; float: left; font-size: 1.5em;">
+            <a title="Return Form Nema" id="returnformnema" href="/returnformnema/{{ objnema.nema_id }}" class="btn"
+              style="border-color: white;color: rgb(255, 255, 255);cursor: pointer;">Nema Return Form </a>
+          </span><br><br><br>
+
+
+          <!-- back button -->
+          <button onclick="goBack()">Back</button>
+
+        </div>
+      </div>
+    </div>
+    <!-- End of Main Content -->
+
+       <!-- back button -->
+    <script>
+      function goBack() { window.history.back();}
+    </script>
+
+
+    <!-- Footer -->
+{% include 'layout/footer.html' %}
+    <!-- End of Footer -->
+
+{% endblock %}

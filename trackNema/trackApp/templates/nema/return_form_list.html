@@ -1,0 +1,98 @@
+{% extends 'index.html' %}
+{% block title %} Return Form {% endblock %}
+{% block content %}
+<!--OSM-->
+{% load static %}
+<!--Map-->
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {% include 'layout/navbar.html' %}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content">
+
+            <!-- Topbar -->
+            {% include 'layout/topbar.html' %}
+            <!-- End of Topbar -->
+            <!-- Begin Page Content -->
+            <div class="container-fluid h-100 pt-4 darker-nw">
+                <!-- Content Row -->
+                <div class="card-body d-blue rounded card-cus">
+                    <h4 class="pb-4 text-white">
+                        Nema Return Form List 
+                        <span style="cursor: pointer; float: right; font-size: 1.5em;"></span>
+                    </h4>
+                  
+                    <div class="table-responsive">
+                        <table class="table text-white" id="datatb" style="border-top:transparent solid;">
+                            <tbody>
+                            <tr>
+                                <!--<td>#</td>-->
+                                <td>No.</td>
+                                <td>Devui Nema</td>  
+                                <td>Date Uninstall</td>
+                                <td>Date Detect Problem</td>
+                                <td>Prolem Description</td>
+                                <td>No.Siri</td>
+                                <td>Image Link</td>
+                                <td>Update</td>
+                                <td>Delete</td>
+                               
+                            </tr>
+                        
+                            {% for re in returnnema %}
+                               
+                            <tr>
+                                <td> {{ re.return_id }}</td> 
+                                <td><a class="nav-link" href="/viewnema/{{ re.nema.nema_id }}">{{ re.nema.devui }}</a></td>
+                                <td> {{ re.dateuninstall|date:'d/m/Y'  }}</a></td>
+                                <td> {{ re.datedetect|date:'d/m/Y'  }} </td>
+                                <td> {{ re.proof_describe }} </td>
+                                <td> {{ re.no_siri }} </td>
+                                <!-- <td> {{ re.pdf_proof }} </td> -->
+                                <td> {{ re.image_proof }} </td>    
+                                <td>
+                                    <a title="Update" href="/updatenemareturn/{{ re.return_id }}" class="btn-text-secondary px-0">
+                                        <i class="far fa-edit fa-lg"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a title="Delete" href="/deletenemareturn/{{ re.return_id }}" class="btn-text-secondary px-0">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>                 
+                            </tr>
+
+                            {% endfor %}
+                        
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    
+                </div>
+
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+        </div>
+
+        <!-- Footer -->
+        {% include 'layout/footer.html' %}
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+{% endblock %}
+
+

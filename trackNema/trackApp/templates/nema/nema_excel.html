@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+<!--Title webpage-->
+{% block title %} View Nema {% endblock %}
+
+
+{% block content %}
+<!--OSM-->
+{% load static %}
+<!--Map-->
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {% include 'layout/navbar.html' %}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content">
+
+            <!-- Topbar -->
+            {% include 'layout/topbar.html' %}
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid h-100 pt-4 darker-nw">
+                <!-- Content Row -->
+                <div class="card-body d-blue rounded card-cus">
+                    <h2 class="pb-4 text-white">
+                        Upload Nema Using Excel
+                    </h2>
+
+                <!-- Form for get_excel -->
+                <label>Import Excel File BARU</label>
+                <form action="/get_excel" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input id="adddevicetype2" name="adddevicetype2" class="form-control" value="false" hidden>
+                        <input type="file" title="Upload excel file" name="excel_file"
+                               style="border: 1px solid black; padding: 5px;" required="required">
+                        <input type="submit" value="Upload"
+                               style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
+                </form><br>
+                 <!-- end Form for get_excel -->
+                       
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+        </div>
+
+        <!-- Footer -->
+        {% include 'layout/footer.html' %}
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+
+{% endblock %}

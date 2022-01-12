@@ -1,0 +1,133 @@
+{% extends 'index.html' %}
+<!-- {% block title %} Home {% endblock %} -->
+{% block content %}
+<!--OSM-->
+{% load static %}
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {% include 'layout/navbar.html' %}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content">
+
+            <!-- Topbar -->
+            {% include 'layout/topbar.html' %}
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid h-100 pt-4 darker-nw">
+                <!-- Content Row -->
+                <!-- <div class="card mb-4 l-black rounded border-0">
+                    <h2 class="pb-4 text-white">
+                        Nema Sensor Tracking System
+                        <span style="cursor: pointer; float: right; font-size: 1.5em;"></span>
+                    </h2>
+
+                </div>    -->
+                <!-- <h2> 90% </h2> -->
+                
+                <div class="col-lg-6">  
+                   
+                    <!-- <label>Import Excel File</label> -->
+
+                    <!-- Form for get_excel -->
+                    <!-- <label>Import Excel File BARU</label>
+                    <form action="/get_excel" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input id="adddevicetype2" name="adddevicetype2" class="form-control" value="false" hidden>
+                            <input type="file" title="Upload excel file" name="excel_file"
+                                   style="border: 1px solid black; padding: 5px;" required="required">
+                            <input type="submit" value="Upload"
+                                   style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
+                    </form><br> -->
+                     <!-- end Form for get_excel -->
+                </div>
+                <div class="card-body d-blue rounded card-cus">
+                    <h2 class="pb-4 text-white">
+                        Nema Sensor Tracking System
+                        <span style="cursor: pointer; float: right; font-size: 1.5em;"></span>
+                    </h2>
+                </div><br>
+
+                <div class="card mb-4 l-black rounded border-0">
+                    <h2 class="pb-4 text-white">
+                         End Client List <br><br>
+                        <span style="cursor: pointer; float: right; font-size: 1.5em;">
+                            <!-- <form class="form-inline my-2 my-lg-0" action="/searchnema" method="post">
+                                {% csrf_token %}
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search Any Keyword " aria-label="Search" name="searchNema">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form> -->
+                            
+                        </span>
+                    </h2>
+
+    
+                    <form role="form" method="post" id="createDevice" action="save_create_key">
+
+                        <div class="form-group">
+                            <label class="text-white">End Client List</label>
+                            <select class="form-control" name="supplierid">
+                                <option value="0"> -- Select -- </option>
+                                {% for it in endclientlist %}
+                                <option value="{{ it.nema_id }}">{{ it.end_client_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <!-- <small id="emailHelp" class="form-text text-muted">Leave unselected if not a supplier.</small> -->
+                        </div>
+
+                        <button id="create_device" type="submit" name="create_device" class="btn btn-primary">
+                            Submit
+                        </button>
+
+                    </form>
+               
+                        
+                </div>
+             
+
+
+            </div>
+            <!-- End of Main Content -->
+        </div>
+
+        <!-- Footer -->
+        {% include 'layout/footer.html' %}
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<script>
+    //Function for save_file
+    function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$('#blahSl').attr('src', e.target.result);
+			}
+
+			reader.readAsDataURL(input.files[0]); // convert to base64 string
+		}
+	}
+	$("#imgInpSl").change(function () {
+		readURL(this);
+	});
+
+</script>
+
+{% endblock %}
+
+
+

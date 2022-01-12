@@ -1,0 +1,128 @@
+{% extends 'index.html' %}
+<!--Title webpage-->
+{% block title %} View Nema {% endblock %}
+
+
+{% block content %}
+<!--OSM-->
+{% load static %}
+<!--Map-->
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {% include 'layout/navbar.html' %}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content">
+
+            <!-- Topbar -->
+            {% include 'layout/topbar.html' %}
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid h-100 pt-4 darker-nw">
+                <!-- Content Row -->
+                <div class="card-body d-blue rounded card-cus">
+
+                  <html>
+                    <head>
+                        <style>
+                            input[type=text], select {
+                              width: 100%;
+                              padding: 12px 20px;
+                              margin: 8px 0;
+                              display: inline-block;
+                              border: 1px solid #ccc;
+                              border-radius: 4px;
+                              box-sizing: border-box;
+                            }
+                    
+                            input[type=date], select {
+                              width: 100%;
+                              padding: 12px 20px;
+                              margin: 8px 0;
+                              display: inline-block;
+                              border: 1px solid #ccc;
+                              border-radius: 4px;
+                              box-sizing: border-box;
+          
+                            }
+                            
+                            input[type=submit] {
+                              width: 100%;
+                              background-color: #4CAF50;
+                              color: white;
+                              padding: 14px 20px;
+                              margin: 8px 0;
+                              border: none;
+                              border-radius: 4px;
+                              cursor: pointer;
+                            }
+                            
+                            input[type=submit]:hover {
+                              background-color: #45a049;
+                            }
+          
+                       </style>
+                    </head>
+                <h2 class="pb-4 text-white">Update Return Form Nema for ID:{{nemaR.return_id}}</h2>
+                <form action="/updatesubmitnemareturn" method="post"> <!-- action: go to controller-->
+                  {% csrf_token %}
+                  
+                  <input type="text" value= {{ nemaR.return_id }} name="return_id" hidden>
+              
+                  <label class="text-white" for="nema">Uninstall Date : </label>
+                  <input type="date" id="dateuninstall" name="dateuninstall" value= "{{ nemaR.dateuninstall|date:'Y-m-d'}}"
+                   min="1997-01-01" max="2030-12-31"><br> 
+          
+                  <label class="text-white"for="nema">Date Detect: </label>
+                  <input type="date" name="datedetect" id="datedetect" value= "{{ nemaR.datedetect|date:'Y-m-d' }}"  
+                   min="1997-01-01" max="2030-12-31"><br>
+              
+                  <label class="text-white" for="nema">Proof Describe: </label>
+                  <input type="text" name="proof_describe" id="proof_describe" value= "{{ nemaR.proof_describe }}"><br>
+          
+                  <label class="text-white" for="nema">Siri Number3: </label>
+                  <input type="text" name="no_siri" id="no_siri" value= "{{ nemaR.no_siri }}"><br>
+                  
+                  <input type="submit" value="UPDATE" id="submit">
+            
+              </form>
+                </html>
+          
+                 <!-- back button -->
+                 <button onclick="goBack()">Back</button>
+                
+          
+                  <!-- back button -->
+                <script>
+                  function goBack() { window.history.back();}
+                </script>
+          
+                        
+                    
+                    
+                </div>
+
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+        </div>
+
+        <!-- Footer -->
+        {% include 'layout/footer.html' %}
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+
+{% endblock %}

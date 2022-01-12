@@ -1,0 +1,169 @@
+
+{% extends 'index.html' %}
+<!--Title webpage-->
+{% block title %} View Nema {% endblock %}
+
+
+{% block content %}
+<!--OSM-->
+{% load static %}
+<!--Map-->
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    {% include 'layout/navbar.html' %}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content">
+
+            <!-- Topbar -->
+            {% include 'layout/topbar.html' %}
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid h-100 pt-4 darker-nw">
+                <!-- Content Row -->
+                <div class="card-body d-blue rounded card-cus">
+
+
+        <html>
+          <head>
+              <style>
+                  input[type=text], select {
+                    width: 100%;
+                    padding: 12px 20px;
+                    margin: 8px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                  }
+          
+                  input[type=date], select {
+                    width: 100%;
+                    padding: 12px 20px;
+                    margin: 8px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+
+                  }
+                  
+                  input[type=submit] {
+                    width: 100%;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 14px 20px;
+                    margin: 8px 0;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                  }
+                  
+                  input[type=submit]:hover {
+                    background-color: #45a049;
+                  }
+                  
+                  /* div {
+                    border-radius: 5px;
+                    background-color: #f2f2f2;
+                    padding: 20px;
+                  } */
+
+                  </style>
+          </head>
+       
+      <h2 class="pb-4 text-white">Update Nema for ID:{{nema.id}}</h2>
+    
+      
+      <form action="/updatesubmitnema" method="post"> <!-- action: go to controller-->
+        {% csrf_token %}
+
+        <input type="text" value= {{ nema.nema_id }} name="nema_id" hidden>
+    
+        <label class="text-white" for="nema">DEVUI: </label>
+        <input type="text"  name="devui" id="devui" value= "{{ nema.devui }}"><br> 
+    
+        <label class="text-white" for="nema">APPLICATION KEY: </label>
+        <input id="app_key"  type="text" name="app_key" value="{{ nema.app_key }}"><br>
+    
+        <label class="text-white" for="nema">SHIPMENT DATE RECEIVED: </label>
+        <input id="ship_date_received" type="date" name="ship_date_received" value= "{{ nema.ship_date_received|date:'Y-m-d'}}"
+         min="1997-01-01" max="2030-12-31"><br> 
+
+        <label class="text-white"for="nema">SITE INSTALLATION DATE: </label>
+        <input id="site_install_date" type="date" name="site_install_date" value= "{{ nema.site_install_date|date:'Y-m-d' }}"><br>
+    
+        <label class="text-white" for="nema">DATE DELIVER: </label>
+        <input id="date_deliver" type="date" name="date_deliver" value= "{{ nema.date_deliver|date:'Y-m-d' }}"><br> 
+    
+        <label class="text-white" for="nema">LIGHTSOL NAME: </label>
+        <input id="lightsol_name" type="text" name="lightsol_name" value= "{{ nema.lightsol_name }}"><br>
+    
+        <label class="text-white" for="nema">LICENSE ACTIVATION DATE: </label>
+        <input id="license_active_date"  type="date" name="license_active_date" value= "{{ nema.license_active_date|date:'Y-m-d' }}"><br>
+    
+        <label class="text-white" for="nema">LICENSE EXPIRED DATE: </label>
+        <input id="license_expired_date" type="date" name="license_expired_date" value= "{{ nema.license_expired_date|date:'Y-m-d' }}"><br>
+    
+        <label class="text-white" for="nema">CONTRACTOR NAME: </label>
+        <input id="contractor_name"  type="text" name="contractor_name" value= "{{ nema.contractor_name }}"><br>
+    
+        <label class="text-white" for="nema">END CLIENT NAME: </label>
+        <input id="end_client_name" type="text" name="end_client_name" value= "{{ nema.end_client_name }}"><br>
+    
+        <label class="text-white" for="nema">PROJECT/TENDER NAME: </label>
+        <input id="project_tender_name"  type="text" name="project_tender_name" value= "{{ nema.project_tender_name }}"><br>
+    
+        <label class="text-white" for="nema">DO.NUMBER: </label>
+        <input id="do_number" type="date" name="do_number" value= "{{ nema.do_number|date:'Y-m-d' }}" min="1997-01-01" max="2030-12-31"><br>
+    
+        <label class="text-white" for="nema">REMARKS: </label>
+        <input id="remarks"  type="text" name="remarks" value= "{{ nema.remarks }}"><br>
+    
+        <input type="submit" value="UPDATE" id="submit">
+    
+    </form>
+    
+      </html>
+
+       <!-- back button -->
+       <button onclick="goBack()">Back</button>
+      
+
+        <!-- back button -->
+      <script>
+        function goBack() { window.history.back();}
+      </script>
+
+                    
+
+                        
+                    
+                    
+                </div>
+
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+        </div>
+
+        <!-- Footer -->
+        {% include 'layout/footer.html' %}
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+
+{% endblock %}
+
