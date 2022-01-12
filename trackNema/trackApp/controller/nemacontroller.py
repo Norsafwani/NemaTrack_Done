@@ -178,7 +178,7 @@ def get_excel(request):
                     # end_client_name=endclientname,project_tender_name=projecttendername,
                     # do_number=donumber,remarks=remarks ) date_deliver=datedeliver,license_active_date=licenseactivedate, 
                     # license_expired_date=licenseexpireddate,
-                    nema.save()
+            nema.save()
 
         except:
             siteinstalldate = now

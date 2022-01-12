@@ -17,8 +17,8 @@ class NemaAdmin(ImportExportModelAdmin):
     list_display = ("nema_id", "devui")
     pass
 
-@admin.register(Returnformnema)
-class Nemareturnform(admin.ModelAdmin):
-    list_display = ("id", "dateuninstall")
-    pass
+# @admin.register(Returnformnema)
+# class Nemareturnform(admin.ModelAdmin):
+#     list_display = ("id", "dateuninstall")
+#     pass
 
