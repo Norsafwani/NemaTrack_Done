@@ -9,6 +9,7 @@ from django.core.files.storage import FileSystemStorage
 from trackApp.models import Nema, Returnformnema, Nemaexcel, Uploadnema,Nemaexcel
 import openpyxl #For Upload Excel
 from django.contrib import messages
+from NemaTrack.backend import _function as func
 
 #Function for Display Nema Data
 def indexnema(request):
@@ -143,9 +144,6 @@ def searchnema(request):
 def get_excel(request):
     import openpyxl
     adddevicetype = request.POST['adddevicetype2']
-    # return HttpResponse(adddevicetype)
-    # organizationid = request.session['organizationid']
-    # userid = request.session['userid']
 
     excel_file = request.FILES["excel_file"]
     wb = openpyxl.load_workbook(excel_file)
@@ -160,7 +158,7 @@ def get_excel(request):
         app_keyd = str(row[1])
         shipdatereceived = str(row[2])
         siteinstalldate = str(row[3])
-        # datedeliver = row[4]
+        datedeliver = row[4]
         lightsolname = str(row[5])
         # licenseactivedate = str(row[6])
         # licenseexpireddate = str(row[7])
@@ -174,16 +172,14 @@ def get_excel(request):
             siteinstalldate = func.strdateToDate(siteinstalldate) 
             
             nema = Nemaexcel(devui_d=devuid, app_key_d= app_keyd,ship_date_received_d=shipdatereceived, 
-                    site_install_date=siteinstalldate, lightsol_name=lightsolname, contractor_name= contractorname)
+                    site_install_date=siteinstalldate, date_deliver=datedeliver, lightsol_name=lightsolname, 
+                    contractor_name= contractorname)
                     # end_client_name=endclientname,project_tender_name=projecttendername,
-                    # do_number=donumber,remarks=remarks ) date_deliver=datedeliver,license_active_date=licenseactivedate, 
+                    # do_number=donumber,remarks=remarks ) ,license_active_date=licenseactivedate, 
                     # license_expired_date=licenseexpireddate,
             nema.save()
-
         except:
             siteinstalldate = now
-
-        
 
     return redirect('/home')
 

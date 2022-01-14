@@ -71,13 +71,12 @@
 
     
                     <form role="form" method="post" id="createDevice" action="save_create_key">
-
                         <div class="form-group">
                             <label class="text-white">End Client List</label>
-                            <select class="form-control" name="supplierid">
+                            <select class="form-control" name="optionendlist">
                                 <option value="0"> -- Select -- </option>
                                 {% for it in endclientlist %}
-                                <option value="{{ it.nema_id }}">{{ it.end_client_name }}</option>
+                                  <option value="{{ it.end_client_name }}"> <a href="home.php">{{ it.end_client_name }}</a> </option>
                                 {% endfor %}
                             </select>
                             <!-- <small id="emailHelp" class="form-text text-muted">Leave unselected if not a supplier.</small> -->
