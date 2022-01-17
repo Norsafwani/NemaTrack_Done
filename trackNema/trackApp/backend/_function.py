@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 
-
 def timestampTodatetime(timestamp):
     timestamp = int(timestamp)
     datetime1 = datetime.fromtimestamp(timestamp)
@@ -11,20 +10,14 @@ def unixtime():
     ts = str(ts)
     return ts
 
-class Dict(defaultdict):
-    def __init__(self):
-        defaultdict.__init__(self, Dict)
-    def __repr__(self):
-        return dict.__repr__(self)
-
 def last10minutes():
     now = datetime.now() - relativedelta(minutes=10)
     n1 = str(now).split('.')
     datetime2 = n1[0]
     return datetime2
 
-def strdatetimeToDatetime(strdate):
-    datetime2 = datetime.strptime(strdate, '%Y-%m-%d %H:%M:%S')
+def strdateToDate(strdate):
+    datetime2 = datetime.strptime(strdate, '%Y-%m-%d')
     return datetime2
 
 def getnow():
