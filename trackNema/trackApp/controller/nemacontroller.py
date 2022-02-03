@@ -6,7 +6,9 @@ from trackApp.models import AuthUser, AuthPermission
 from django.contrib.auth.forms import AuthenticationForm 
 from django.contrib.auth import logout, authenticate, login
 from django.core.files.storage import FileSystemStorage
-from trackApp.models import Nema, Returnformnema, Nemaexcel, Uploadnema,Nemaexcel
+from trackApp.models import Nema, Returnformnema, Nemaexcel, Uploadnema,Nemaexcel,
+from trackApp.models import AuthUser, AuthPermission
+
 import openpyxl #For Upload Excel
 from django.contrib import messages
 from trackApp.backend import _function as func
@@ -140,7 +142,46 @@ def searchnema(request):
         return render(request, 'nema/nema_search.html', {})
 
 
-#UPLOAD EXCEL TO DATABASE - JADI!
+#UPLOAD EXCEL TO DATABASE -En rusydi betulkan. Error on data amik 10 terus even excel ade 3 je data
+# def get_excel(request):
+#     import openpyxl
+#     adddevicetype = request.POST['adddevicetype2']
+
+#     excel_file = request.FILES["excel_file"]
+#     wb = openpyxl.load_workbook(excel_file)
+#     worksheet = wb["Sheet1"] 
+#     count = countsuccess = countfail = 0 
+#     msg = 'none'
+
+#     for row in worksheet.iter_rows(min_row=2, values_only=True):
+#         count = count + 1
+
+#         devuid = str(row[0])
+#         app_keyd = str(row[1])
+#         # shipdatereceived = str(row[2])
+#         # siteinstalldate = str(row[3])
+#         if str(row[2]):
+#             shipdatereceived = str(datetime.date.now())[:10]
+#             print("Result dlm IF:")
+#             print(shipdatereceived)
+#         else:
+#             shipdatereceived = str(row[2])[:10]
+#             print("salah ni")
+#         # if str(row[3]) == '':
+#         #     siteinstalldate = '0000-00-00'0
+#         # else:
+#         #     siteinstalldate = str(row[3])[:10]
+#         # siteinstalldate = str(row[3])[:10]
+       
+#         # print("Result Date")
+#         # print(shipdatereceived,siteinstalldate)
+#         nema = Nemaexcel(devui_d=devuid, app_key_d= app_keyd,ship_date_received_d=shipdatereceived, 
+#                     )
+#         nema.save()
+
+#     return redirect('/home')
+
+# TRY BARU UPLOAD EXCEL TO DATABASE 
 def get_excel(request):
     import openpyxl
     adddevicetype = request.POST['adddevicetype2']
@@ -151,38 +192,39 @@ def get_excel(request):
     count = countsuccess = countfail = 0 
     msg = 'none'
 
-    for row in worksheet.iter_rows(min_row=2,values_only=True):
+    for row in worksheet.iter_rows(min_row=2, values_only=True):
         count = count + 1
 
         devuid = str(row[0])
         app_keyd = str(row[1])
         shipdatereceived = str(row[2])
         siteinstalldate = str(row[3])
-        # datedeliver = row[4]
-        # lightsolname = str(row[5])
-        # licenseactivedate = str(row[6])
-        # licenseexpireddate = str(row[7])
-        # contractorname = str(row[6])
-        # endclientname = str(row[9])
-        # projecttendername = str(row[10])
-        # donumber = str(row[11])
-        # remarks = str(row[12])
- 
-        nema = Nemaexcel(devui_d=devuid, app_key_d= app_keyd,ship_date_received_d=shipdatereceived, 
-                    site_install_date=siteinstalldate)
-                    # end_client_name=endclientname,project_tender_name=projecttendername,
-                    # do_number=donumber,remarks=remarks ) ,license_active_date=licenseactivedate, 
-                    # license_expired_date=licenseexpireddate,date_deliver=datedeliver, lightsol_name=lightsolname, 
-                    # contractor_name= contractorname
+        # if str(row[2]):
+        #     shipdatereceived = str(datetime.date.now())[:10]
+        #     print("Result dlm IF:")
+        #     print(shipdatereceived)
+        # else:
+        #     shipdatereceived = str(row[2])[:10]
+        #     print("salah ni")
+        # if str(row[3]) == '':
+        #     siteinstalldate = '0000-00-00'0
+        # else:
+        #     siteinstalldate = str(row[3])[:10]
+        # siteinstalldate = str(row[3])[:10]
+       
+        # print("Result Date")
+        # print(shipdatereceived,siteinstalldate)
+        nema = Nemaexcel(devui_d=devuid, app_key_d= app_keyd,ship_date_received_d=shipdatereceived,site_install_date=siteinstalldate)
         nema.save()
 
     return redirect('/home')
+
 
 #Function for Add Nema using Excel
 def nemaexcel(request):
     return render(request,'nema/nema_excel.html',{})
 
-#Try Upload File/images
+#Upload File/images
 def save_file_second(request):
 
     dateuninstall = request.POST['dateuninstall']
@@ -233,6 +275,18 @@ def viewnema(request,nema_id):
         'objnema': objnema
     }
     return render(request, 'nema/nema_view.html', obj)
+
+#Function for user profile
+def profileuser(request):
+    id = request.session['user_id'] 
+    # return HttpResponse(id)
+    profile= AuthUser.objects.get(id=id)
+
+    obj = {
+        'title' : 'USER LIST',
+        'profile': profile
+    }
+    return render(request, 'profile/profileuser.html', obj)
 
 #Function for output the client list at home
 # def endclientlist(request):
@@ -330,5 +384,7 @@ def viewnema(request,nema_id):
 #         'nema': nema,
 #     }
 #     return render(request, 'nema/nema_update.html', obj)
+
+
 
 

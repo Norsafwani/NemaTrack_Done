@@ -162,7 +162,6 @@ class Nemaexcel(models.Model):
         managed = False
         db_table = 'nemaExcel'
 
-
 class Returnformnema(models.Model):
     return_id = models.AutoField(primary_key=True)
     dateuninstall = models.DateField(blank=True, null=True)

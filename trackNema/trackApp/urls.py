@@ -76,4 +76,7 @@ urlpatterns = [
     #SUBMIT RETURN FORM
     path ('save_file_second',nemacontroller.save_file_second, name='save_file_second'),
 
+    #PROFILE_USER
+    path('profileuser',nemacontroller.profileuser),
+
 ]

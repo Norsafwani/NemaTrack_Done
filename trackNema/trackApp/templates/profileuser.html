@@ -1,0 +1,137 @@
+<style>
+
+    table, td, th {  
+      
+      text-align: left;
+      color:white;
+      border-collapse: collapse; 
+      border: 1px solid #FFCB04;
+    }
+    
+    table {
+     
+      
+      width: 50%;
+    }
+    
+    th, td {
+      padding: 10px;
+    }
+    
+    </style>
+    
+    {% extends 'index.html' %}
+    <!-- {% block title %} User {% endblock %} -->
+    {% block content %}
+    <!--OSM-->
+    {% load static %}
+    <!--Map-->
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+    
+        <!-- Sidebar -->
+        {% include 'layout/navbar.html' %}
+        <!-- End of Sidebar -->
+    
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+    
+            <div id="content">
+    
+                <!-- Topbar -->
+                {% include 'layout/topbar.html' %}
+                <!-- End of Topbar -->
+    
+                <!-- Begin Page Content -->
+    
+    <!-- <form action="/team_name_url/" method="post">
+        <label for="team_name">Enter Organization Name: </label>
+        <input id="team_name" type="text" name="name_field" value="Name"><br>
+    
+        <label for="team_name">Enter Organization Address: </label>
+        <input id="team_name" type="text" name="name_field" value="Address"><br>
+    
+    
+        <input type="submit" value="Save" id="submit">
+    
+    </form> -->
+    
+    <div class="container-fluid h-100 pt-4 darker-nw">
+      <!-- Content Row -->
+      <div class="card-body d-blue rounded card-cus">
+          <h4 class="pb-4 text-white">
+            Your Profile 
+              <span style="cursor: pointer; float: right; font-size: 1.5em;">
+                
+                <a title="UPDATE Profile" id="updateprofile_" href="/updateprofile/{{ profile.id }}" class="btn"
+                style="border-color: white;color: white;cursor: pointer;"><i class="fas fa-plus"></i>&nbsp UPDATE </a>
+    
+            
+            </span>
+          </h4>
+    <!-- style="width: 50%; color: lightyellow; font-size: medium; font-family: Arial, Helvetica, sans-serif; font-style: normal; border-collapse: collapse; " -->
+           <h3>User Information</h3>
+            <table> 
+                <tr>
+                    <th>Name: </th>
+                    <td>{{ profile.username }}</td>
+                </tr>
+                <tr>
+                    <th>Superuser: </th>
+                    <td>{{ profile.is_superuser }}</td>
+                </tr>
+                <tr>
+                    <th>Full Name: </th>
+                    <td>{{ profile.first_name }} {{ profile.last_name}}</th>
+                </tr>
+                <tr>
+                    <th>Email: </th>
+                    <td>{{ profile.email }}</td>
+                </tr>
+                <tr>
+                    <th>Staff: </th>
+                    <td>{{ profile.is_staff }}</td>
+                </tr>
+                <tr>
+                    <th>Active user: </th>
+                    <td>{{ profile.is_active }}</td>
+                </tr>
+                <tr>
+                    <th>Date Joined: </th>
+                    <td>{{ profile.date_joined }}</td>
+                </tr>
+                <tr>
+                    <th>Created by: </th>
+                    <td>{{ profile.created_by }}</td>
+                </tr>
+                <tr>
+                    <th>Date Modified: </th>
+                    <td>{{ profile.date_modified }}</td>
+                </tr>
+                <tr>
+                    <th>Modified by: </th>
+                    <td>{{ profile.modified_by }}</td>
+                </tr>
+                <tr>
+                    <th>User Type: </th>
+                    <td>{{ profile.user_type }}</td>
+                </tr>
+                <tr>
+                    <th>Role Number:</th>
+                    <td>{{ profile.role }}</td>
+                </tr>
+                
+            </table>
+    
+            </div>
+            </div>
+            </div>
+            </div>
+    </div>
+    <!-- End of Main Content -->
+    
+     <!-- Footer -->
+     {% include 'layout/footer.html' %}
+     <!-- End of Footer -->
+    
+     {% endblock %}+0-

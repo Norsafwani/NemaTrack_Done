@@ -37,6 +37,8 @@
         <td>Nema Id</td>
         <td>DEVUI </td>
         <td>APP KEY  </td>
+        <td>Ship Date  </td>
+        <td>Site Install Date  </td>
        
 
     </tr>
@@ -49,7 +51,9 @@
         <td> {{ nex.id    }}</td> 
         <td> {{ nex.devui_d }} </td>
         <td> {{ nex.app_key_d }} </td>
-        <!-- <td>{{ it.id.id}}</td> -->
+        <td> {{ nex.ship_date_received_d|date:'d/m/Y' }} </td>
+        <td> {{ nex.site_install_date|date:'d/m/Y' }} </td>
+      
        
     </tr>
     {% endfor %}
