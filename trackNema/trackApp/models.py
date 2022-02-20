@@ -8,6 +8,17 @@
 from django.db import models
 
 
+class Excel(models.Model):
+    devui_e = models.CharField(max_length=255, blank=True, null=True)
+    app_key_e = models.CharField(max_length=255, blank=True, null=True)
+    date_d = models.DateTimeField(blank=True, null=True)
+    date_uninstall = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'Excel'
+
+
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -126,16 +137,16 @@ class Nema(models.Model):
     nema_id = models.AutoField(primary_key=True)
     devui = models.CharField(max_length=255, blank=True, null=True)
     app_key = models.CharField(max_length=255, blank=True, null=True)
-    ship_date_received = models.DateField(blank=True, null=True)
-    site_install_date = models.DateField(blank=True, null=True)
-    date_deliver = models.DateField(blank=True, null=True)
+    ship_date_received = models.DateTimeField(blank=True, null=True)
+    site_install_date = models.DateTimeField(blank=True, null=True)
+    date_deliver = models.DateTimeField(blank=True, null=True)
     lightsol_name = models.CharField(max_length=255, blank=True, null=True)
-    license_active_date = models.DateField(blank=True, null=True)
-    license_expired_date = models.DateField(blank=True, null=True)
+    license_active_date = models.DateTimeField(blank=True, null=True)
+    license_expired_date = models.DateTimeField(blank=True, null=True)
     contractor_name = models.CharField(max_length=255, blank=True, null=True)
     end_client_name = models.CharField(max_length=255, blank=True, null=True)
     project_tender_name = models.CharField(max_length=255, blank=True, null=True)
-    do_number = models.DateField(blank=True, null=True)
+    do_number = models.DateTimeField(blank=True, null=True)
     remarks = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
@@ -146,8 +157,8 @@ class Nema(models.Model):
 class Nemaexcel(models.Model):
     devui_d = models.CharField(max_length=255, blank=True, null=True)
     app_key_d = models.CharField(max_length=255, blank=True, null=True)
-    ship_date_received_d = models.DateField(blank=True, null=True)
-    site_install_date = models.DateField(blank=True, null=True)
+    ship_date_received_d = models.DateTimeField(blank=True, null=True)
+    site_install_date = models.DateTimeField(blank=True, null=True)
     date_deliver = models.DateField(blank=True, null=True)
     lightsol_name = models.CharField(max_length=255, blank=True, null=True)
     license_active_date = models.DateField(blank=True, null=True)
@@ -161,6 +172,7 @@ class Nemaexcel(models.Model):
     class Meta:
         managed = False
         db_table = 'nemaExcel'
+
 
 class Returnformnema(models.Model):
     return_id = models.AutoField(primary_key=True)
